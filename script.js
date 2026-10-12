@@ -1,71 +1,187 @@
-```javascript
-// PROJECT BRIDGE - JAVASCRIPT
 
-// 1. SEARCH PROBLEMS
-const searchInput = document.getElementById("search");
-const problemCards = document.querySelectorAll(".problem-card");
-const noResults = document.getElementById("no-results");
+/* =====================================
+   PROJECT BRIDGE - JAVASCRIPT
+   ===================================== */
 
-if (searchInput && noResults) {
-    searchInput.addEventListener("input", function () {
-        const query = searchInput.value.trim().toLowerCase();
-        let visibleCount = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  // HTML elements
+  const searchInput = document.getElementById("search");
+  const categoryFilter = document.getElementById("category-filter");
+  const problemCards = document.querySelectorAll(".problem-card");
+  const noResults = document.getElementById("no-results");
+  const resultCount = document.getElementById("result-count");
 
-        problemCards.forEach(function (card) {
-            const matches = card.textContent
-                .toLowerCase()
-                .includes(query);
+  const menuToggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav");
 
-            card.hidden = !matches;
+  const loginForm = document.getElementById("login-form");
+  const loginMessage = document.getElementById("login-message");
 
-            if (matches) {
-                visibleCount++;
-            }
-        });
+  const dialog = document.getElementById("application-dialog");
+  const closeDialog = document.getElementById("close-dialog");
+  const dialogTitle = document.getElementById("dialog-title");
+  const dialogDescription = document.getElementById("dialog-description");
+  const applicationForm = document.getElementById("application-form");
+  const applicationMessage = document.getElementById("application-message");
 
-        noResults.hidden = visibleCount > 0;
+  let selectedProblem = "";
+
+  // Footer year
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  // Mobile navigation
+  menuToggle.addEventListener("click", function () {
+    const isOpen = nav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "×" : "☰";
+  });
+
+  // Close mobile menu after selecting a link
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      nav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.textContent = "☰";
     });
-}
+  });
 
-// 2. APPLY FOR A PROBLEM
-function applyForProblem(problemName) {
-    alert(
-        "PROJECT BRIDGE\n\n" +
-        "Selected Problem: " + problemName +
-        "\n\nYour application feature is not connected yet. " +
-        "A backend is required to submit applications."
-    );
-}
+  // Search and category filter
+  function filterProblems() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const selectedCategory = categoryFilter.value;
 
-// 3. STUDENT LOGIN VALIDATION
-const loginForm = document.getElementById("login-form");
-const loginMessage = document.getElementById("login-message");
+    let visibleCount = 0;
 
-if (loginForm && loginMessage) {
-    loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+    problemCards.forEach(function (card) {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      const description = card.querySelector("p").textContent.toLowerCase();
+      const searchData = (card.dataset.search || "").toLowerCase();
+      const category = card.dataset.category;
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+      const matchesSearch =
+        title.includes(searchTerm) ||
+        description.includes(searchTerm) ||
+        searchData.includes(searchTerm);
 
-        if (email === "" || password === "") {
-            loginMessage.textContent =
-                "Please enter your email and password.";
-            return;
-        }
+      const matchesCategory =
+        selectedCategory === "all" ||
+        category === selectedCategory;
 
-        if (password.length < 8) {
-            loginMessage.textContent =
-                "Password must contain at least 8 characters.";
-            return;
-        }
+      const isVisible = matchesSearch && matchesCategory;
 
-        loginMessage.textContent =
-            "Login form validated successfully! " +
-            "Real authentication is not connected yet.";
+      card.hidden = !isVisible;
+
+      if (isVisible) {
+        visibleCount++;
+      }
     });
-}
 
-// 4. WEBSITE STATUS
-console.log("Project Bridge loaded successfully!");
-```
+    noResults.hidden = visibleCount !== 0;
+
+    resultCount.textContent =
+      visibleCount + (visibleCount === 1 ? " problem found" : " problems found");
+  }
+
+  searchInput.addEventListener("input", filterProblems);
+  categoryFilter.addEventListener("change", filterProblems);
+  filterProblems();
+
+  // Problem details and application dialog
+  const descriptions = {
+    "Smart Waste Management":
+      "Explore how digital tools, sensors, or a web application could improve waste collection and recycling.",
+    "Water Conservation":
+      "Propose a solution that tracks water usage, identifies waste, or encourages conservation.",
+    "Student Learning Hub":
+      "Design a platform that helps students discover learning materials and study collaboratively.",
+    "Healthcare Awareness":
+      "Develop an educational platform that shares reliable health information and helpful reminders.",
+    "Public Transport Helper":
+      "Plan an application that makes public transport routes and journey information easier to access.",
+    "Energy Saving Tracker":
+      "Create a dashboard that helps users understand energy usage and discover ways to save electricity."
+  };
+
+  document.querySelectorAll(".apply-button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      selectedProblem = button.dataset.problem || "";
+
+      dialogTitle.textContent = selectedProblem;
+      dialogDescription.textContent =
+        descriptions[selectedProblem] || "Explore this real-world challenge.";
+
+      applicationForm.reset();
+      applicationMessage.textContent = "";
+      applicationMessage.className = "form-message";
+
+      if (typeof dialog.showModal === "function") {
+        dialog.showModal();
+      } else {
+        alert("Your browser does not support the application dialog.");
+      }
+    });
+  });
+
+  // Close application dialog
+  closeDialog.addEventListener("click", function () {
+    dialog.close();
+  });
+
+  // Close dialog when clicking outside its content
+  dialog.addEventListener("click", function (event) {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  // Demo application submission
+  applicationForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (!applicationForm.reportValidity()) {
+      return;
+    }
+
+    const applicantName =
+      document.getElementById("applicant-name").value.trim();
+
+    applicationMessage.textContent =
+      "Demo submission complete, " + applicantName +
+      ". Your interest in " + selectedProblem +
+      " was validated in this browser. It has NOT been sent or saved to a server.";
+
+    applicationMessage.className = "form-message success";
+  });
+
+  // Demo login validation
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    loginMessage.className = "form-message";
+
+    if (!email || !password) {
+      loginMessage.textContent = "Please enter your email and password.";
+      loginMessage.classList.add("error");
+      return;
+    }
+
+    if (password.length < 8) {
+      loginMessage.textContent =
+        "Your password must contain at least 8 characters.";
+      loginMessage.classList.add("error");
+      return;
+    }
+
+    loginMessage.textContent =
+      "Demo validation successful for " + email +
+      ". This is not a real login: no account was checked or created.";
+
+    loginMessage.classList.add("success");
+  });
+
+  console.log("Project Bridge website loaded successfully.");
+});
