@@ -1,216 +1,361 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Project Bridge | Student Innovation Platform</title>
-
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project Bridge connects students with real-world problems and practical projects.">
+  <title>Project Bridge | Real-World Problem Solving</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
-
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <h1>PROJECT BRIDGE</h1>
-        <p>Connecting Students With Real-World Problems</p>
-    </header>
+  <!-- Navigation -->
+  <header class="header">
+    <a href="#home" class="logo">
+      <span class="logo-icon">PB</span>
+      <span>PROJECT <strong>BRIDGE</strong></span>
+    </a>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#problems">Explore Problems</a>
-        <a href="#about">About Us</a>
-        <a href="#login">Student Login</a>
+    <button class="menu-toggle" id="menu-toggle"
+      aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="nav" id="nav">
+      <a href="#home">Home</a>
+      <a href="#problems">Problems</a>
+      <a href="#about">About</a>
+      <a href="#login" class="nav-button">Login</a>
     </nav>
+  </header>
 
-    <!-- HOME -->
-    <section id="home" class="hero">
-        <h2>Turn Your Ideas Into Real Solutions</h2>
-
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">LEARN · BUILD · SOLVE</span>
+        <h1>Connect Your Skills to <span>Real-World Problems</span></h1>
         <p>
-            Connect with real-world challenges, collaborate
-            with students, and build practical skills.
+          Project Bridge helps students discover practical challenges,
+          collaborate with others, and develop solutions that make a difference.
         </p>
-
-        <a class="btn" href="#problems">Explore Projects</a>
-    </section>
-
-    <!-- REAL-WORLD PROBLEMS -->
-    <section id="problems">
-        <h2>Explore Real-World Problems</h2>
-
-        <p>
-            Find challenges and apply your knowledge to solve them.
-        </p>
-
-        <!-- SEARCH -->
-        <input
-            type="text"
-            id="search"
-            placeholder="Search problems..."
-            aria-label="Search real-world problems"
-        >
-
-        <!-- PROBLEM CARDS -->
-        <div class="cards">
-
-            <div class="card problem-card">
-                <h3>Smart Waste Management</h3>
-
-                <p>
-                    Develop solutions to improve waste collection
-                    and recycling in cities.
-                </p>
-
-                <button type="button"
-                    onclick="applyForProblem('Smart Waste Management')">
-                    Apply Now
-                </button>
-            </div>
-
-            <div class="card problem-card">
-                <h3>Education for Everyone</h3>
-
-                <p>
-                    Build digital learning tools for students
-                    who need educational support.
-                </p>
-
-                <button type="button"
-                    onclick="applyForProblem('Education for Everyone')">
-                    Apply Now
-                </button>
-            </div>
-
-            <div class="card problem-card">
-                <h3>Healthcare Awareness</h3>
-
-                <p>
-                    Create applications that improve health
-                    awareness in local communities.
-                </p>
-
-                <button type="button"
-                    onclick="applyForProblem('Healthcare Awareness')">
-                    Apply Now
-                </button>
-            </div>
-
-            <div class="card problem-card">
-                <h3>Smart Traffic Management</h3>
-
-                <p>
-                    Develop ideas to reduce traffic congestion
-                    and improve road safety.
-                </p>
-
-                <button type="button"
-                    onclick="applyForProblem('Smart Traffic Management')">
-                    Apply Now
-                </button>
-            </div>
-
-            <div class="card problem-card">
-                <h3>Environmental Protection</h3>
-
-                <p>
-                    Create technology-based solutions to protect
-                    the environment.
-                </p>
-
-                <button type="button"
-                    onclick="applyForProblem('Environmental Protection')">
-                    Apply Now
-                </button>
-            </div>
-
-            <div class="card problem-card">
-                <h3>Women Safety</h3>
-
-                <p>
-                    Design digital tools that help improve
-                    personal safety and emergency response.
-                </p>
-
-                <button type="button"
-                    onclick="applyForProblem('Women Safety')">
-                    Apply Now
-                </button>
-            </div>
-
+        <div class="hero-actions">
+          <a href="#problems" class="button button-primary">Explore Problems →</a>
+          <a href="#about" class="button button-outline">Learn More</a>
         </div>
+        <div class="hero-stats">
+          <div><strong>Real</strong><span>Challenges</span></div>
+          <div><strong>Practical</strong><span>Experience</span></div>
+          <div><strong>Student</strong><span>Innovation</span></div>
+        </div>
+      </div>
 
-        <!-- NO SEARCH RESULTS -->
-        <p id="no-results" hidden>
-            No matching problems found.
-        </p>
+      <div class="hero-card">
+        <div class="card-top">
+          <span class="live-dot"></span>
+          <span>THE NEXT BIG IDEA STARTS HERE</span>
+        </div>
+        <div class="bridge-art" aria-hidden="true">
+          <div class="art-circle circle-one"></div>
+          <div class="art-circle circle-two"></div>
+          <div class="art-bridge">↗</div>
+          <div class="art-label label-one">STUDENT SKILLS</div>
+          <div class="art-label label-two">REAL PROBLEMS</div>
+        </div>
+        <h2>Ideas into Impact</h2>
+        <p>Learn by solving challenges that matter.</p>
+        <a href="#problems" class="text-link">Find your first challenge →</a>
+      </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <h2>About Project Bridge</h2>
+    <!-- Features -->
+    <section class="features section-padding">
+      <div class="section-heading">
+        <span class="eyebrow">WHY PROJECT BRIDGE?</span>
+        <h2>Build Skills Beyond the Classroom</h2>
+        <p>Turn what you learn into something useful.</p>
+      </div>
 
-        <p>
-            Project Bridge connects students with practical
-            challenges from communities and organizations.
-            Students can explore problems, develop solutions,
-            collaborate, and gain real-world experience.
-        </p>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Real Challenges</h3>
+          <p>Explore problems inspired by real community and industry needs.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Practical Learning</h3>
+          <p>Apply your classroom knowledge to build useful solutions.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Collaboration</h3>
+          <p>Discover opportunities to work with other students and teams.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- STUDENT LOGIN -->
-    <section id="login">
-        <h2>Student Login</h2>
+    <!-- Problems -->
+    <section class="problems section-padding" id="problems">
+      <div class="section-heading">
+        <span class="eyebrow">EXPLORE OPPORTUNITIES</span>
+        <h2>Real-World Problems</h2>
+        <p>Choose a challenge that matches your interests and skills.</p>
+      </div>
 
-        <p>Enter your details to test the login form.</p>
+      <div class="problem-tools">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input type="search" id="search"
+            placeholder="Search problems, skills, or categories..."
+            aria-label="Search problems">
+        </label>
 
-        <form id="login-form">
+        <select id="category-filter" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+          <option value="technology">Technology</option>
+          <option value="environment">Environment</option>
+          <option value="education">Education</option>
+          <option value="health">Healthcare</option>
+        </select>
+      </div>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter student email"
-                aria-label="Student email"
-                required
-            >
+      <p id="result-count" class="result-count" aria-live="polite"></p>
 
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter password (minimum 8 characters)"
-                aria-label="Password"
-                minlength="8"
-                required
-            >
+      <div class="problem-grid" id="problem-grid">
+        <article class="problem-card"
+          data-category="technology"
+          data-search="smart waste management technology sensors recycling">
+          <div class="problem-top">
+            <span class="tag tag-blue">Technology</span>
+            <span class="difficulty">Beginner</span>
+          </div>
+          <div class="problem-icon">♻️</div>
+          <h3>Smart Waste Management</h3>
+          <p>How can technology help communities manage waste and improve recycling?</p>
+          <div class="skills"><span>Web Development</span><span>IoT</span></div>
+          <button class="button button-primary apply-button"
+            data-problem="Smart Waste Management">View & Apply →</button>
+        </article>
 
-            <button type="submit">Sign In</button>
+        <article class="problem-card"
+          data-category="environment"
+          data-search="water conservation environment leakage tracking">
+          <div class="problem-top">
+            <span class="tag tag-green">Environment</span>
+            <span class="difficulty">Intermediate</span>
+          </div>
+          <div class="problem-icon">💧</div>
+          <h3>Water Conservation</h3>
+          <p>Design a system to track water usage and encourage water-saving habits.</p>
+          <div class="skills"><span>Data Analysis</span><span>Web Apps</span></div>
+          <button class="button button-primary apply-button"
+            data-problem="Water Conservation">View & Apply →</button>
+        </article>
 
-        </form>
+        <article class="problem-card"
+          data-category="education"
+          data-search="student learning education study resources online">
+          <div class="problem-top">
+            <span class="tag tag-purple">Education</span>
+            <span class="difficulty">Beginner</span>
+          </div>
+          <div class="problem-icon">📚</div>
+          <h3>Student Learning Hub</h3>
+          <p>Create a platform where students can find learning resources and study together.</p>
+          <div class="skills"><span>HTML/CSS</span><span>JavaScript</span></div>
+          <button class="button button-primary apply-button"
+            data-problem="Student Learning Hub">View & Apply →</button>
+        </article>
 
-        <p id="login-message" aria-live="polite"></p>
+        <article class="problem-card"
+          data-category="health"
+          data-search="healthcare health appointment reminders awareness">
+          <div class="problem-top">
+            <span class="tag tag-red">Healthcare</span>
+            <span class="difficulty">Intermediate</span>
+          </div>
+          <div class="problem-icon">❤️</div>
+          <h3>Healthcare Awareness</h3>
+          <p>Build an awareness platform that shares reliable health information and reminders.</p>
+          <div class="skills"><span>Web Development</span><span>UI/UX</span></div>
+          <button class="button button-primary apply-button"
+            data-problem="Healthcare Awareness">View & Apply →</button>
+        </article>
 
-        <p>
-            <small>
-                Demo only. Secure authentication requires
-                a backend or authentication service.
-            </small>
-        </p>
+        <article class="problem-card"
+          data-category="technology"
+          data-search="public transport bus routes tracking technology">
+          <div class="problem-top">
+            <span class="tag tag-blue">Technology</span>
+            <span class="difficulty">Intermediate</span>
+          </div>
+          <div class="problem-icon">🚌</div>
+          <h3>Public Transport Helper</h3>
+          <p>Help commuters find route information and plan their daily journeys.</p>
+          <div class="skills"><span>JavaScript</span><span>Maps</span></div>
+          <button class="button button-primary apply-button"
+            data-problem="Public Transport Helper">View & Apply →</button>
+        </article>
+
+        <article class="problem-card"
+          data-category="environment"
+          data-search="energy electricity usage environment sustainability">
+          <div class="problem-top">
+            <span class="tag tag-green">Environment</span>
+            <span class="difficulty">Beginner</span>
+          </div>
+          <div class="problem-icon">⚡</div>
+          <h3>Energy Saving Tracker</h3>
+          <p>Create a dashboard that helps people understand and reduce electricity use.</p>
+          <div class="skills"><span>Data Visualization</span><span>Web Apps</span></div>
+          <button class="button button-primary apply-button"
+            data-problem="Energy Saving Tracker">View & Apply →</button>
+        </article>
+      </div>
+
+      <div id="no-results" class="no-results" hidden>
+        <h3>No matching problems found</h3>
+        <p>Try another keyword or select a different category.</p>
+      </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>
-            &copy; 2026 Project Bridge |
-            Student Innovation Platform
-        </p>
-    </footer>
+    <!-- How it works -->
+    <section class="how-it-works section-padding">
+      <div class="section-heading">
+        <span class="eyebrow">YOUR JOURNEY</span>
+        <h2>How It Works</h2>
+        <p>Start with an idea and move toward a practical solution.</p>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-number">01</span>
+          <h3>Discover</h3>
+          <p>Browse real-world challenges and choose one that interests you.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">02</span>
+          <h3>Apply</h3>
+          <p>Submit your interest and explain the skills you can contribute.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">03</span>
+          <h3>Build</h3>
+          <p>Plan, collaborate, create, and test your solution.</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">04</span>
+          <h3>Make an Impact</h3>
+          <p>Present your work and learn from the experience.</p>
+        </article>
+      </div>
+    </section>
 
-    <!-- JAVASCRIPT -->
-    <script src="./script.js"></script>
+    <!-- About -->
+    <section class="about section-padding" id="about">
+      <div class="about-visual">
+        <div class="about-symbol">P<span>B</span></div>
+        <p>Knowledge + Creativity + Action</p>
+      </div>
+      <div class="about-content">
+        <span class="eyebrow">ABOUT OUR PROJECT</span>
+        <h2>Bridging the Gap Between Education and Reality</h2>
+        <p>
+          Project Bridge is a student-focused platform concept that connects
+          academic learning with practical problem-solving. It helps students
+          explore challenges, apply their skills, and develop project experience.
+        </p>
+        <ul>
+          <li>Discover challenges across different domains</li>
+          <li>Practice technical and teamwork skills</li>
+          <li>Build a portfolio of practical projects</li>
+        </ul>
+        <a href="#problems" class="button button-primary">Explore Challenges</a>
+      </div>
+    </section>
+
+    <!-- Login -->
+    <section class="login section-padding" id="login">
+      <div class="login-info">
+        <span class="eyebrow">JOIN THE COMMUNITY</span>
+        <h2>Your Next Idea Can Make a Difference.</h2>
+        <p>Explore challenges, practice your skills, and start building.</p>
+        <div class="login-note">
+          <span>✓</span> Student-focused opportunities
+        </div>
+        <div class="login-note">
+          <span>✓</span> Learning through real-world problems
+        </div>
+      </div>
+
+      <form class="login-form" id="login-form">
+        <h3>Welcome Back</h3>
+        <p>Enter your details to try the demo login.</p>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email"
+          placeholder="student@example.com" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"
+          placeholder="At least 8 characters"
+          autocomplete="current-password" minlength="8" required>
+
+        <button type="submit" class="button button-primary login-submit">
+          Login
+        </button>
+
+        <p id="login-message" class="form-message" aria-live="polite"></p>
+        <p class="demo-note">
+          Demo only: this form does not create an account or verify credentials.
+        </p>
+      </form>
+    </section>
+
+    <!-- Application dialog -->
+    <dialog id="application-dialog" class="application-dialog">
+      <button type="button" id="close-dialog" class="close-dialog"
+        aria-label="Close dialog">×</button>
+      <span class="eyebrow">CHALLENGE DETAILS</span>
+      <h2 id="dialog-title">Problem title</h2>
+      <p id="dialog-description"></p>
+
+      <form id="application-form">
+        <label for="applicant-name">Your Name</label>
+        <input id="applicant-name" name="applicant-name"
+          type="text" required minlength="2" placeholder="Enter your name">
+
+        <label for="applicant-email">Your Email</label>
+        <input id="applicant-email" name="applicant-email"
+          type="email" required placeholder="student@example.com">
+
+        <label for="applicant-skills">Your Skills and Idea</label>
+        <textarea id="applicant-skills" name="applicant-skills"
+          required minlength="10" rows="4"
+          placeholder="Describe your skills and how you would solve this problem"></textarea>
+
+        <button class="button button-primary login-submit" type="submit">
+          Submit Application
+        </button>
+        <p id="application-message" class="form-message" aria-live="polite"></p>
+        <p class="demo-note">
+          Demo only: applications are not sent to a server or permanently saved.
+        </p>
+      </form>
+    </dialog>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="#home" class="logo footer-logo">
+      <span class="logo-icon">PB</span>
+      <span>PROJECT <strong>BRIDGE</strong></span>
+    </a>
+    <p>Connecting Students With Real-World Problems</p>
+    <p class="copyright">© <span id="year"></span> Project Bridge. Student project demo.</p>
+  </footer>
 
 </body>
 </html>
-```
